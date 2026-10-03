@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Safari Trips",
+    "slug": "safari-trips",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.safaritrips",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "We need access to your photos to upload trip images.",
+        "NSPhotoLibraryAddUsageDescription": "We need to save images."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.example.safaritrips"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "safaritrips",
+    "plugins": [
+      "expo-secure-store",
+      "expo-image",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "We need access to your photos to upload trip images."
+        }
+      ]
+    ]
+  }
+}
