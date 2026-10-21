@@ -35,7 +35,7 @@ const icon =
         backgroundColor: focused ? colors.primarySoft : "transparent",
       }}
     >
-      <Text style={{ fontSize: 18, opacity: focused ? 1 : 0.6 }}>{e}</Text>
+      <Text style={{ fontSize: 18, opacity: focused ? 1 : 0.6, color: focused ? colors.primary : colors.textSoft }}>{e}</Text>
     </View>
   );
 
@@ -44,7 +44,7 @@ function Tabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: "#fff",
+          backgroundColor: colors.surface,
           borderTopColor: colors.border,
           borderTopWidth: 1,
           height: 78,
@@ -96,8 +96,9 @@ export default function Navigation() {
           ...DefaultTheme.colors,
           background: colors.background,
           primary: colors.primary,
-          card: "#ffffff",
+          card: colors.surface,
           text: colors.text,
+          border: colors.border,
         },
       }}
     >
@@ -113,12 +114,7 @@ export default function Navigation() {
           },
         }}
       >
-        <Stack.Screen
-          name="Tabs"
-          component={Tabs}
-          options={{ headerShown: false }}
-        />
-
+        <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
         <Stack.Screen
           name="TripDetail"
           component={TripDetailScreen}
@@ -127,13 +123,7 @@ export default function Navigation() {
             headerBackTitle: "Back",
           })}
         />
-
-        <Stack.Screen
-          name="Book"
-          component={BookScreen}
-          options={{ title: "Complete booking" }}
-        />
-
+        <Stack.Screen name="Book" component={BookScreen} options={{ title: "Complete booking" }} />
         <Stack.Screen
           name="BookingDetail"
           component={BookingDetailScreen}
@@ -141,42 +131,13 @@ export default function Navigation() {
             title: route.params.reference ?? "Booking",
           })}
         />
-
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ title: "Welcome back", presentation: "modal" }}
-        />
-
-        <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
-          options={{ title: "Create account", presentation: "modal" }}
-        />
-
-        <Stack.Screen
-          name="AdminHome"
-          component={AdminHomeScreen}
-          options={{ title: "Staff admin" }}
-        />
-
-        <Stack.Screen
-          name="AdminList"
-          component={ResourceListScreen}
-          options={({ route }) => ({ title: route.params.title ?? "Manage" })}
-        />
-
+        <Stack.Screen name="Login" component={LoginScreen} options={{ title: "Welcome back", presentation: "modal" }} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ title: "Create account", presentation: "modal" }} />
+        <Stack.Screen name="AdminHome" component={AdminHomeScreen} options={{ title: "Staff admin" }} />
+        <Stack.Screen name="AdminList" component={ResourceListScreen} options={({ route }) => ({ title: route.params.title ?? "Manage" })} />
         <Stack.Screen name="AdminForm" component={ResourceFormScreen} />
-        <Stack.Screen
-          name="AdminTripManage"
-          component={TripManageScreen}
-          options={{ title: "Manage trip" }}
-        />
-        <Stack.Screen
-          name="AdminGallery"
-          component={TripGalleryScreen}
-          options={{ title: "Gallery" }}
-        />
+        <Stack.Screen name="AdminTripManage" component={TripManageScreen} options={{ title: "Manage trip" }} />
+        <Stack.Screen name="AdminGallery" component={TripGalleryScreen} options={{ title: "Gallery" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

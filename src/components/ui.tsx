@@ -73,11 +73,7 @@ export function Button({
         style,
       ]}
     >
-      {loading ? (
-        <ActivityIndicator color={fg} />
-      ) : (
-        <Text style={[s.btnText, { color: fg }]}>{title}</Text>
-      )}
+      {loading ? <ActivityIndicator color={fg} /> : <Text style={[s.btnText, { color: fg }]}>{title}</Text>}
     </Pressable>
   );
 }
@@ -154,9 +150,7 @@ export function ErrorView({
 }) {
   return (
     <View style={s.center}>
-      <Text style={{ color: colors.danger, textAlign: "center", marginBottom: 12 }}>
-        {message}
-      </Text>
+      <Text style={{ color: colors.danger, textAlign: "center", marginBottom: 12 }}>{message}</Text>
       {onRetry ? <Button title="Try again" variant="outline" onPress={onRetry} /> : null}
     </View>
   );
@@ -216,7 +210,7 @@ export function TripCard({
           />
         </View>
       ) : (
-        <View style={[s.banner, { backgroundColor: st.bg }]}> 
+        <View style={[s.banner, { backgroundColor: st.bg }]}>
           <Text style={{ fontSize: 46 }}>{st.emoji}</Text>
         </View>
       )}
@@ -235,9 +229,7 @@ export function TripCard({
 
         <View style={s.row}>
           <Text style={s.price}>
-            {trip.from_price
-              ? `${trip.trip_type === "accommodation" ? "From " : ""}${money(trip.from_price)}`
-              : ""}
+            {trip.from_price ? `${trip.trip_type === "accommodation" ? "From " : ""}${money(trip.from_price)}` : ""}
           </Text>
 
           <Text style={[s.meta, { textAlign: "right" }]}>
@@ -338,11 +330,7 @@ export function TripGallery({ images }: { images: any[] }) {
                 opacity: i === index ? 1 : 0.6,
               }}
             >
-              <Image
-                source={img.image_url}
-                style={{ flex: 1, width: "100%" }}
-                contentFit="cover"
-              />
+              <Image source={img.image_url} style={{ flex: 1, width: "100%" }} contentFit="cover" />
             </Pressable>
           ))}
         </View>
@@ -378,7 +366,7 @@ export const s = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
@@ -389,7 +377,7 @@ export const s = StyleSheet.create({
   chip: {
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     borderRadius: 999,
     paddingHorizontal: 14,
     paddingVertical: 9,

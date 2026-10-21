@@ -5,15 +5,7 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-naviga
 import { Api } from "../api/endpoints";
 import { describeError } from "../api/client";
 import { useAuth } from "../auth/AuthContext";
-import {
-  Badge,
-  Button,
-  Card,
-  ErrorView,
-  Loading,
-  SectionTitle,
-  TripGallery,
-} from "../components/ui";
+import { Badge, Button, Card, ErrorView, Loading, SectionTitle, TripGallery } from "../components/ui";
 import { colors, styleFor } from "../theme";
 import type { RootStackParamList } from "../navigation/types";
 import { duration, fmtDate, fmtRange, money, unitLabel } from "../utils/format";
@@ -70,24 +62,16 @@ export default function TripDetailScreen({ route, navigation }: Props) {
         </View>
 
         <View style={{ padding: 18 }}>
-          <Text style={{ color: colors.textSoft, fontWeight: "700" }}>
-            {t.operator.name} · {t.category.name}
-          </Text>
-          <Text style={{ fontSize: 24, fontWeight: "900", color: colors.text, marginVertical: 6 }}>
-            {t.title}
-          </Text>
+          <Text style={{ color: colors.textSoft, fontWeight: "700" }}>{t.operator.name} · {t.category.name}</Text>
+          <Text style={{ fontSize: 24, fontWeight: "900", color: colors.text, marginVertical: 6 }}>{t.title}</Text>
           <Text style={{ color: colors.textSoft, fontWeight: "600" }}>
             {t.destination} · {duration(t)}
             {t.transport ? ` · ${t.transport}` : ""}
           </Text>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 12 }}>
-            {t.min_participants ? (
-              <Badge label={`Min. ${t.min_participants} people`} color={colors.accent} />
-            ) : null}
-            {t.covid_guidelines ? (
-              <Badge label="MoH guidelines observed" color={colors.primary} />
-            ) : null}
+            {t.min_participants ? <Badge label={`Min. ${t.min_participants} people`} color={colors.accent} /> : null}
+            {t.covid_guidelines ? <Badge label="MoH guidelines observed" color={colors.primary} /> : null}
             {t.valid_until ? (
               <Badge
                 label={`${t.is_expired ? "Expired" : "Valid until"} ${fmtDate(t.valid_until)}`}
@@ -100,7 +84,7 @@ export default function TripDetailScreen({ route, navigation }: Props) {
           {t.description ? <Text style={{ marginTop: 8, color: colors.text, lineHeight: 22 }}>{t.description}</Text> : null}
 
           {t.perks ? (
-            <Card style={{ marginTop: 12, backgroundColor: "#FFF7E6" }}>
+            <Card style={{ marginTop: 12, backgroundColor: colors.accentSoft }}>
               <Text style={{ fontWeight: "700", color: colors.text }}>🎁 {t.perks}</Text>
             </Card>
           ) : null}
@@ -159,9 +143,7 @@ export default function TripDetailScreen({ route, navigation }: Props) {
               <SectionTitle>Included</SectionTitle>
               <Card>
                 {t.inclusions.map((x) => (
-                  <Text key={x} style={{ paddingVertical: 3, color: colors.text }}>
-                    ✅ {x}
-                  </Text>
+                  <Text key={x} style={{ paddingVertical: 3, color: colors.text }}>✅ {x}</Text>
                 ))}
               </Card>
             </>
@@ -172,9 +154,7 @@ export default function TripDetailScreen({ route, navigation }: Props) {
               <SectionTitle>Not included</SectionTitle>
               <Card>
                 {t.exclusions.map((x) => (
-                  <Text key={x} style={{ paddingVertical: 3, color: colors.text }}>
-                    ❌ {x}
-                  </Text>
+                  <Text key={x} style={{ paddingVertical: 3, color: colors.text }}>❌ {x}</Text>
                 ))}
               </Card>
             </>

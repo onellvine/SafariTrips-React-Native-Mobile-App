@@ -19,7 +19,7 @@ function Option({ selected, onPress, children }: { selected: boolean; onPress: (
       style={{
         borderWidth: 2,
         borderColor: selected ? colors.primary : colors.border,
-        backgroundColor: selected ? "#EAF4EE" : "#fff",
+        backgroundColor: selected ? colors.primarySoft : colors.surface,
         borderRadius: 14,
         padding: 12,
         marginBottom: 8,
@@ -85,7 +85,7 @@ export default function BookScreen({ route, navigation }: Props) {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
+    <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 40, backgroundColor: colors.background }} keyboardShouldPersistTaps="handled">
       <Text style={{ fontSize: 20, fontWeight: "800", color: colors.text }}>{t.title}</Text>
 
       <SectionTitle>1. Choose a date</SectionTitle>
@@ -125,7 +125,7 @@ export default function BookScreen({ route, navigation }: Props) {
       <Field label="Phone number" value={phone} onChangeText={setPhone} keyboardType="phone-pad" placeholder="07XX XXX XXX" />
 
       {opt ? (
-        <Card style={{ backgroundColor: "#EAF4EE" }}>
+        <Card style={{ backgroundColor: colors.primarySoft }}>
           <Text style={{ color: colors.text }}>
             Total: <Text style={{ fontWeight: "800" }}>{money(total, opt.currency)}</Text>
           </Text>
