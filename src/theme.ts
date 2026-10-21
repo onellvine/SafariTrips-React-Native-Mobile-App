@@ -1,29 +1,62 @@
-export const colors = {
-  primary: "#1E6B4F",
-  primaryDark: "#124F3D",
-  primarySoft: "#EAF5F0",
-  accent: "#E7B15E",
-  accentSoft: "#FFF3DA",
-  background: "#F6F3EE",
-  backgroundAlt: "#F1EDE7",
-  surface: "#FFFFFF",
-  surfaceMuted: "#F4F1EB",
-  text: "#1B1B1B",
-  textSoft: "#5F635D",
-  border: "#E7E1D8",
-  success: "#2E8B57",
-  successSoft: "#E9F8EE",
-  danger: "#C84B4B",
-  dangerSoft: "#FCEAEA",
-  warning: "#D98C2A",
-  warn: "#D98C2A",
-  shadow: "rgba(18, 38, 24, 0.12)",
+export const palette = {
+  light: {
+    primary: "#1E6B4F",
+    primaryDark: "#124F3D",
+    primarySoft: "#EAF5F0",
+    accent: "#E7B15E",
+    accentSoft: "#FFF3DA",
+    background: "#F6F3EE",
+    backgroundAlt: "#F1EDE7",
+    surface: "#FFFFFF",
+    surfaceMuted: "#F4F1EB",
+    text: "#1B1B1B",
+    textSoft: "#5F635D",
+    border: "#E7E1D8",
+    success: "#2E8B57",
+    successSoft: "#E9F8EE",
+    danger: "#C84B4B",
+    dangerSoft: "#FCEAEA",
+    warning: "#D98C2A",
+    warn: "#D98C2A",
+    shadow: "rgba(18, 38, 24, 0.12)",
+    bg: "#F6F3EE",
+    card: "#FFFFFF",
+    muted: "#5F635D",
+  },
+  dark: {
+    primary: "#7CCFA4",
+    primaryDark: "#5AAE86",
+    primarySoft: "#153327",
+    accent: "#E7B15E",
+    accentSoft: "#3B2B16",
+    background: "#111A17",
+    backgroundAlt: "#16211E",
+    surface: "#1A2522",
+    surfaceMuted: "#1D2B28",
+    text: "#F5F7F6",
+    textSoft: "#AFB7B2",
+    border: "#2A3834",
+    success: "#67D59E",
+    successSoft: "#123528",
+    danger: "#F48787",
+    dangerSoft: "#3B1E1E",
+    warning: "#F7C76A",
+    warn: "#F7C76A",
+    shadow: "rgba(0,0,0,0.35)",
+    bg: "#111A17",
+    card: "#1A2522",
+    muted: "#AFB7B2",
+  },
+} as const;
 
-  // Backwards-compatible aliases for existing code
-  bg: "#F6F3EE",
-  card: "#FFFFFF",
-  muted: "#5F635D",
-};
+export const colors: Record<string, string> = { ...palette.light };
+
+export function applyTheme(scheme: "light" | "dark" = "light") {
+  const next = scheme === "dark" ? palette.dark : palette.light;
+  Object.keys(next).forEach((key) => {
+    colors[key] = next[key as keyof typeof next];
+  });
+}
 
 export const radius = 20;
 
