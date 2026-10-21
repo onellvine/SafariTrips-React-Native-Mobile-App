@@ -13,7 +13,7 @@ export default function App() {
   const scheme = useColorScheme();
 
   useEffect(() => {
-    applyTheme(scheme);
+    applyTheme(scheme === 'dark' ? 'dark' : 'light');
   }, [scheme]);
 
   return (
