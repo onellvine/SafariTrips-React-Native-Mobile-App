@@ -16,11 +16,11 @@ import type { RootStackParamList } from "../navigation/types";
 
 const Shell = ({ children }: { children: React.ReactNode }) => (
   <KeyboardAvoidingView
-    style={{ flex: 1 }}
+    style={{ flex: 1, backgroundColor: colors.background }}
     behavior={Platform.OS === "ios" ? "padding" : undefined}
   >
     <ScrollView
-      contentContainerStyle={{ padding: 20 }}
+      contentContainerStyle={{ padding: 20, paddingTop: 30, paddingBottom: 60 }}
       keyboardShouldPersistTaps="handled"
     >
       {children}
@@ -28,9 +28,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => (
   </KeyboardAvoidingView>
 );
 
-export function LoginScreen({
-  navigation,
-}: NativeStackScreenProps<RootStackParamList, "Login">) {
+export function LoginScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "Login">) {
   const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,45 +45,42 @@ export function LoginScreen({
       setBusy(false);
     }
   };
+
   return (
     <Shell>
-      <Text style={{ fontSize: 26, fontWeight: "800", marginBottom: 20 }}>
+      <Text style={{ fontSize: 32, fontWeight: "900", marginBottom: 8, color: colors.text }}>
         Welcome back
       </Text>
-      <Field
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        autoComplete="email"
-      />
-      <Field
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        autoComplete="password"
-      />
-      <Button
-        title="Sign in"
-        onPress={submit}
-        loading={busy}
-        disabled={!email || !password}
-      />
+      <Text style={{ fontSize: 15, color: colors.textSoft, marginBottom: 24 }}>
+        Sign in to continue your safari journey
+      </Text>
+
+      <View style={{ backgroundColor: "#fff", borderRadius: 18, borderWidth: 1, borderColor: colors.border, padding: 18 }}>
+        <Field
+          label="Email"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          autoComplete="email"
+        />
+        <Field
+          label="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          autoComplete="password"
+        />
+      </View>
+
+      <Button title="Sign in" onPress={submit} loading={busy} disabled={!email || !password} style={{ marginTop: 18 }} />
       <View style={{ height: 12 }} />
-      <Button
-        title="Create an account"
-        variant="outline"
-        onPress={() => navigation.replace("Register")}
-      />
+      <Button title="Create an account" variant="outline" onPress={() => navigation.replace("Register")} />
     </Shell>
   );
 }
 
-export function RegisterScreen({
-  navigation,
-}: NativeStackScreenProps<RootStackParamList, "Register">) {
+export function RegisterScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "Register">) {
   const { signUp } = useAuth();
   const [f, setF] = useState({
     first_name: "",
@@ -94,8 +89,7 @@ export function RegisterScreen({
     password: "",
   });
   const [busy, setBusy] = useState(false);
-  const set = (k: keyof typeof f) => (v: string) =>
-    setF((p) => ({ ...p, [k]: v }));
+  const set = (k: keyof typeof f) => (v: string) => setF((p) => ({ ...p, [k]: v }));
 
   const submit = async () => {
     setBusy(true);
@@ -108,37 +102,24 @@ export function RegisterScreen({
       setBusy(false);
     }
   };
+
   return (
     <Shell>
-      <Text style={{ fontSize: 26, fontWeight: "800", marginBottom: 20 }}>
-        Join and start exploring
+      <Text style={{ fontSize: 32, fontWeight: "900", marginBottom: 8, color: colors.text }}>
+        Create account
       </Text>
-      <Field
-        label="First name"
-        value={f.first_name}
-        onChangeText={set("first_name")}
-        autoCapitalize="words"
-      />
-      <Field
-        label="Last name"
-        value={f.last_name}
-        onChangeText={set("last_name")}
-        autoCapitalize="words"
-      />
-      <Field
-        label="Email"
-        value={f.email}
-        onChangeText={set("email")}
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
-      <Field
-        label="Password"
-        value={f.password}
-        onChangeText={set("password")}
-        secureTextEntry
-      />
-      <Text style={{ color: colors.muted, marginBottom: 14, fontSize: 12 }}>
+      <Text style={{ fontSize: 15, color: colors.textSoft, marginBottom: 24 }}>
+        Start booking your next unforgettable adventure
+      </Text>
+
+      <View style={{ backgroundColor: "#fff", borderRadius: 18, borderWidth: 1, borderColor: colors.border, padding: 18 }}>
+        <Field label="First name" value={f.first_name} onChangeText={set("first_name")} autoCapitalize="words" />
+        <Field label="Last name" value={f.last_name} onChangeText={set("last_name")} autoCapitalize="words" />
+        <Field label="Email" value={f.email} onChangeText={set("email")} autoCapitalize="none" keyboardType="email-address" />
+        <Field label="Password" value={f.password} onChangeText={set("password")} secureTextEntry />
+      </View>
+
+      <Text style={{ color: colors.textSoft, marginTop: 16, marginBottom: 14, fontSize: 12 }}>
         At least 8 characters, not a common password.
       </Text>
       <Button
